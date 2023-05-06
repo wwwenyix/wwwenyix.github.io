@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "I am Wenyyyi"
+title:  "First post"
 date:   2022-11-10 22:32:38 +0100
 categories: jekyll update
 ---
