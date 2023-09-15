@@ -22,10 +22,12 @@ title: 漫游指南
 email: wynnec12@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   但少闲人如吾两人者耳。
-baseurl: "" # the subpath of your site, e.g. /blog
+
+# baseurl: "blog/index.md" # the subpath of your site, e.g. /blog
 url: "" # the base hostname & protocol for your site, e.g. http://example.com
-twitter_username: jekyllrb
-github_username:  jekyll
+
+#twitter_username: jekyllrb
+#github_username:  jekyll
 
 # Build settings
 remote_theme: erlzhang/jekyll-theme-persephone
