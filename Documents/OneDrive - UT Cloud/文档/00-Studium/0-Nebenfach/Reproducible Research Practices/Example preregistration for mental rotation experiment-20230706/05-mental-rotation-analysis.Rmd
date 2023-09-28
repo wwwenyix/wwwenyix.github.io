@@ -1,0 +1,104 @@
+---
+title: "Data Analysis for the Mental Rotation Task"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = F, message = F, error = F)
+```
+
+```{r, echo = F}
+
+library(tidyverse)
+
+library(rstan)
+# set cores to use to the total number of cores (minimally 4)
+options(mc.cores = max(parallel::detectCores(), 4))
+# save a compiled version of the Stan model file
+rstan_options(auto_write = TRUE)
+
+library(brms)
+
+library(aida)
+
+set.seed(123)
+
+```
+
+```{r}
+# read in the data
+d <- read_csv('05-MR-data.csv')
+# show the first 10 rows
+head(d)
+```
+
+# Data cleaning
+
+We exclude every participant who completed the whole experiment in less than one minute.
+
+```{r}
+d <- d %>% filter(timeSpent >= 1.0)
+```
+
+
+We also exclude every individual trial faster than 300 ms and slower than 5000 ms.
+
+```{r}
+d <- d %>% filter(RT >= 300 & RT <= 5000)
+```
+
+# Hypothesis testing
+
+We specify '50' as default level for factor `angle`, and 'incorrect' as default level for factor `correctness`.
+
+```{r}
+# we must declare 'angle' as a factor, else it is treated as a number
+d <- d %>% 
+  mutate(
+    angle = factor(angle, levels = c("50", "150")),
+    correctness = factor(correctness, levels = c("incorrect", "correct"))
+  )
+```
+
+
+## Hypothesis 1
+
+We want to know if RTs are higher in the 150º conditions than in the 50º condition. We focus on main trials with correct answers. We use default (flat) priors on the effect coefficient. 
+
+```{r, results = 'hide'}
+# run a simple Bayesian regression model
+fit_hyp1 <- brm(
+  formula = RT ~ angle,
+  data = d %>% filter(trial_type == "main", correctness == "correct")
+)
+```
+
+We judge there to be evidence for hypothesis 1 ("Response times increase with the angular disparity between the two objects.") if the 95% HDI for relevant coefficent `angle` only contains positive values.
+
+```{r}
+brms::posterior_samples(fit_hyp1) %>% 
+  pull(b_angle150) %>% 
+  HDInterval::hdi()
+```
+
+## Hypothesis 2
+
+```{r, error = F, message=F, warning = F, results = "hide"}
+fit_hyp2 <- brm(
+  formula = correctness ~ angle,
+  # using a logistic regression
+  family = bernoulli(link = "logit"),
+  data = d %>% filter(trial_type == "main")
+)
+```
+
+We judge there to be evidence in favor of hypothesis 2 ("Error rates increase with the angular disparity between the two objects.") if the 95% HDI for the estimated coefficients for `angle` only contains negative values.
+
+```{r}
+brms::posterior_samples(fit_hyp2) %>% 
+  pull(b_angle150) %>% 
+  HDInterval::hdi()
+```
+```
+
+
