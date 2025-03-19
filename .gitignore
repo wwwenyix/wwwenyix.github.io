@@ -3,3 +3,28 @@ _site
 .jekyll-cache
 .jekyll-metadata
 vendor
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# macOS 系统文件
+.DS_Store
+
+# Node.js 依赖（如果用到）
+node_modules/
+
+# VS Code（如果你偶尔用）
+.vscode/
+
+# 日志文件（如果未来有）
+*.log
+
+# 环境变量文件（如果有）
+.env
+
+# 其他临时文件
+*.tmp
+*.swp
+
+
+dist/
