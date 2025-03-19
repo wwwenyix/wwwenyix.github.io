@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mark's Birthday Adventure - The Room</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+<div class="screen">
+    <div id="status-bar">
+        <p>Wisdom:  <span id="wisdom"></span></p>
+        <p>Strength:  <span id="strength"></span></p>
+    </div>
+
+    <div class="story-text">
+        <p>In the dim light, he notices some groceries and kitchen utensils scattered in the corner.</p>
+        <p>Across the room, he spots a bench press, its weights looking dangerously heavy, as if someone had left it in a hurry.</p>
+        <p>On a dusty desk, a book about chess lies open, its pages yellowed with age. There's an eerie feeling about it, like it's been waiting for someone to solve its secrets.</p>
+        <p>A shelf nearby holds several books, but they are old and worn. </p>
+    </div>
+    <h1>Mark decides to...</h1>
+    <div class="button-container">
+        <button onclick="location.href='room-options/cooking.html'">Investigate the groceries 🍅</button>
+        <button onclick="location.href='room-options/workout.html'">Workout 💪</button>
+        <button onclick="location.href='room-options/chess.html'">Flip through the chess book ♟️</button>
+        <button onclick="location.href='room-options/book.html'">Check the bookshelf 📚</button>
+    </div>
+
+    <div id="result-message"></div>
+    <button id="final-challenge-button" onclick="checkFinalChallenge()">Open the gate</button>
+</div>
+</body>
+</html>

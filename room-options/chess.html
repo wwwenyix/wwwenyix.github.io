@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mark's Birthday Adventure - Chess Trivia</title>
+    <link rel="stylesheet" href="../style.css">
+    <script src="../script.js" defer></script>
+</head>
+<body>
+<div class="screen">
+    <div id="status-bar">
+        <p>Wisdom: <span id="wisdom"></span></p>
+        <p>Strength: <span id="strength"></span></p>
+    </div>
+
+    <div class="story-text">
+        <p>Mark opens the chess book and starts reading. It's full of strategies and puzzles, but one page catches his eye. It contains a chess trivia quiz.</p>
+        <p>Mark is intrigued. He decides to answer a few questions to test his knowledge.</p>
+    </div>
+
+    <div class="question-container">
+        <h1 id="question">What is the name of the piece that moves diagonally in chess?</h1>
+        <button class="answer-button" onclick="checkAnswer('bishop', 'bishop', 'wisdom')">Bishop</button>
+        <button class="answer-button" onclick="checkAnswer('knight', 'bishop', 'wisdom')">Knight</button>
+        <button class="answer-button" onclick="checkAnswer('queen', 'bishop', 'wisdom')">Queen</button>
+    </div>
+
+    <div id="result-message" class="result-message"></div>
+
+    <button onclick="location.href='../scene5-room.html'">Go back to the room</button>
+</div>
+</body>
+</html>

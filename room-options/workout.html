@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mark's Birthday Adventure - Bench Press Challenge</title>
+    <link rel="stylesheet" href="../style.css">
+    <script src="../script.js" defer></script>
+    <style>
+        .emoji-react {
+            font-size: 30px; /* 控制emoji大小 */
+            margin-top: 20px; /* 增加emoji和上方内容的距离 */
+            text-align: center; /* 居中显示emoji */
+        }
+    </style>
+</head>
+<body>
+<div class="screen">
+    <div id="status-bar">
+        <p>Wisdom: <span id="wisdom">5</span></p>
+        <p>Strength: <span id="strength">5</span></p>
+    </div>
+
+    <div class="story-text">
+        <p>Mark looks at the bench press in the corner of the room. He decides to challenge himself to complete a bench press workout.</p>
+        <p>The goal is to perform 20 successful bench presses to test his strength.</p>
+    </div>
+
+    <div class="bench-press-challenge">
+        <p>Bench Press Count: <span id="pressCount">0</span> / 20</p>
+        <button class="answer-button" id="pressButton" onclick="performBenchPress()">Do a Bench Press</button>
+    </div>
+
+    <div id="emoji-react" class="emoji-react"></div>
+
+    <div id="result-message" class="result-message"></div>
+
+    <button onclick="location.href='../scene5-room.html'">Go back to the room</button>
+</div>
+
+<script>
+    let pressCount = 0;
+    const targetPresses = 20;
+
+    function updatePressCount() {
+        document.getElementById('pressCount').textContent = pressCount;
+    }
+
+    function performBenchPress() {
+        if (pressCount < targetPresses) {
+            pressCount += 1;
+            if (pressCount > targetPresses) pressCount = targetPresses;
+            updatePressCount();
+
+            showEmojiReaction();
+        }
+
+        if (pressCount === targetPresses) {
+            document.getElementById('result-message').innerHTML = "Well done! You've completed the bench press challenge. You've gained 2 strength point.<br> Now go back to the room.";
+            increaseStrength(2); // 完成卧推挑战，增加力量点数
+            document.getElementById('pressButton').disabled = true; // 禁用按钮，防止再次点击
+        }
+    }
+
+    function showEmojiReaction() {
+        const emojiContainer = document.getElementById('emoji-react');
+        const emojis = ['💪', '🔥', '😊', '✨', '💥']; // 可爱的emoji集合
+
+        emojiContainer.innerHTML = '';
+
+        for (let i = 0; i < 3; i++) {
+            const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)]; // 随机选择一个emoji
+            const emojiElement = document.createElement('span');
+            emojiElement.textContent = randomEmoji;
+            emojiContainer.appendChild(emojiElement);
+            emojiContainer.appendChild(document.createTextNode(' ')); // 在emoji之间添加空格
+        }
+    }
+</script>
+</body>
+</html>

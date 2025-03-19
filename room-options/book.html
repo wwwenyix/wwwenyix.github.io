@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mark's Birthday Adventure - Book Mystery</title>
+    <link rel="stylesheet" href="../style.css">
+    <script src="../script.js" defer></script>
+</head>
+<body>
+<div class="screen">
+    <div id="status-bar">
+        <p>Wisdom: <span id="wisdom"></span></p>
+        <p>Strength: <span id="strength"></span></p>
+    </div>
+
+    <div class="story-text">
+        <p>Mark scans the bookshelf, his eyes catching the faint outlines of old, worn spines.</p>
+        <p>Among them, one book stands out—its cover seems familiar. He pulls it closer and suddenly remembers. It’s Before the Coffee Gets Cold, a book he had read to pass the time.
+            However, the author's name is nearly erased.</p>
+        <p>With a sudden impulse, Mark picks up a pen, determined to restore the name of this book.</p>
+    </div>
+    <div class="question-container">
+        <h1 id="question">What is the name of the author?</h1>
+        <button class="answer-button" onclick="checkAnswer('Toshimizu Kawaguchi', 'Toshikazu Kawaguchi', 'wisdom')">Toshimizu Kawaguchi</button>
+        <button class="answer-button" onclick="checkAnswer('Kawaguchi Dochimizu', 'Toshikazu Kawaguchi', 'wisdom')">Kawaguchi Dochimizu</button>
+        <button class="answer-button" onclick="checkAnswer('Toshikazu Kawaguchi', 'Toshikazu Kawaguchi', 'wisdom')">Toshikazu Kawaguchi</button>
+    </div>
+
+    <div id="result-message" class="result-message"></div>
+
+    <button onclick="location.href='../scene5-room.html'">Go back to the room</button>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,219 @@
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+/* 将整个网页的字体改为 Patrick Hand */
+* {
+    font-family: 'Patrick Hand', cursive;
+    color: #2061b2;
+    margin: 0;
+    padding: 0;
+}
+
+/* 让背景图片正确居中 */
+body {
+    background-image: url('assets/front-page.jpg'); /* 图片路径，确认正确 */
+    background-size: cover;  /* 让图片填满整个屏幕 */
+    background-position: center center;  /* 确保背景居中 */
+    background-repeat: no-repeat; /* 不重复 */
+    width: 100vw; /* 宽度撑满 */
+    height: 100vh; /* 高度撑满 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.hidden {
+    display: none;
+}
+
+button {
+    background-color: #fcc003;
+    color: white;
+    padding: 10px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-family: 'Patrick Hand', cursive;
+}
+
+button:hover {
+    background-color: #e68900;
+}
+
+#final-challenge-button{
+    background-color: #fa5515;
+}
+
+.story-text {
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    /* orange background color as the background image */
+    /*background-color: #fa5515;*/
+    background-color: transparent;
+    /*color: #444444;*/
+    font-size: 30px;
+    line-height: 1.8;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    font-family: 'Patrick Hand', cursive;
+    max-height: 400px;  /* 设置最大高度 */
+    overflow-y: auto;  /* 当内容超出时，显示垂直滚动条 */
+}
+
+.story-text p {
+    margin-bottom: 0.5em; /* Add space between paragraphs */
+}
+
+.short-text img {
+    display: block;  /* 让图片独占一行 */
+    margin: 20px 0;  /* 图片上下留白 */
+    max-width: 100%;  /* 限制图片宽度为容器的最大宽度 */
+    height: auto;  /* 保持图片比例 */
+}
+
+.button-container {
+    display: flex;
+    flex-wrap: wrap;  /* 自动换行 */
+    gap: 20px;  /* 按钮之间的间隔 */
+    justify-content: center;  /* 居中对齐 */
+    margin-top: 20px;
+}
+
+#status-bar {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%); /* together with left:50%, the bar can always be in the center. */
+    background-color: rgba(252,137,186,0.5);
+    color: #ffffff;
+    padding: 10px;
+    text-align: center;
+    z-index: 100;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+#status-bar p {
+    display: inline-block;
+    margin: 0 20px;
+    font-size: 18px;
+    font-family: 'Patrick Hand', sans-serif;
+}
+
+.question-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.question-container p {
+    font-size: 18px;
+}
+
+.answer-button {
+    width: 200px;
+    padding: 15px;
+    font-size: 16px;
+    background-color: #fa5515;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.answer-button:hover {
+    background-color: #e94e00;
+}
+
+.result-message {
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.bench-press-challenge {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+/* cooking task */
+.cooking-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.ingredients {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.ingredient {
+    margin: 10px;
+    font-size: 18px;
+}
+
+.ingredient input {
+    margin-left: 10px;
+}
+
+.answer-container {
+    margin-top: 30px;
+}
+
+.answer-container input {
+    padding: 10px;
+    font-size: 16px;
+}
+
+.result-message {
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.cooking-image {
+    display: none;
+    margin-top: 20px;
+}
+
+#result-message {
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+.answer-button {
+    width: 200px;
+    padding: 15px;
+    font-size: 16px;
+    background-color: #fa5515;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.answer-button:hover {
+    background-color: #e94e00;
+}
+
+.cooking-image {
+    display: inline-block;
+    margin-top: 20px;
+    max-width: 30%; /* 确保图片不超过容器宽度 */
+    height: 150px; /* 保持图片比例 */
+}
+
+

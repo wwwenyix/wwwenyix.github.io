@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wisdom Challenge</title>
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    .container {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .input-container {
+      margin-top: 20px;
+    }
+    .button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    #message {
+      font-size: 18px;
+      margin-top: 20px;
+    }
+
+    .input-container input {
+      width: 200px;  /* 宽度 */
+      height: 40px;  /* 高度 */
+      font-size: 18px;  /* 字体大小 */
+      padding: 5px;  /* 内边距，增加空间感 */
+      border-radius: 8px;  /* 圆角 */
+      border: 2px solid #ccc;  /* 边框 */
+    }
+
+    .input-container input:focus {
+      border-color: #fa83b6;  /* 聚焦时改变边框颜色 */
+      outline: none;  /* 去除聚焦时的默认轮廓 */
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1>Wisdom Challenge</h1>
+  <h2>Use your wisdom to guess the correct number!</h2>
+  <h2>Guess the number between 1 and 50 within 5 attempts!</h2>
+
+  <div class="input-container">
+    <input type="number" id="guessInput" placeholder="Enter your guess" min="1" max="50">
+  </div>
+
+  <button class="answer-button" id="submitGuessButton" onclick="submitGuess()">Submit Guess</button>
+
+  <div id="message"></div>
+
+  <div id="result">
+    <button class="button" onclick="restartChallenge()">Try Again</button>
+    <button class="button" onclick="goBackToRoom()">Go Back to Room</button>
+  </div>
+</div>
+
+<script>
+  let targetNumber = Math.floor(Math.random() * 50) + 1;
+  let attempts = 5;
+
+  function submitGuess() {
+    const guess = parseInt(document.getElementById('guessInput').value);
+    const message = document.getElementById('message');
+
+    if (isNaN(guess) || guess < 1 || guess > 50) {
+      message.textContent = "Please enter a valid number between 1 and 50.";
+      return;
+    }
+
+    attempts--;
+
+    if (guess === targetNumber) {
+      message.textContent = "Correct! You've guessed the number!";
+      // document.getElementById('result').style.display = 'block';
+      setTimeout(() => {
+        window.location.href = "../final.html";
+      }, 2000);
+    } else if (attempts === 0) {
+      message.textContent = "Oops! You've used all your attempts! The correct number was " + targetNumber;
+      document.getElementById('result').style.display = 'block';
+    } else {
+      if (guess < targetNumber) {
+        message.textContent = `Too low! You have ${attempts} attempts left.`;
+      } else if (guess > targetNumber) {
+        message.textContent = `Too high! You have ${attempts} attempts left.`;
+      }
+    }
+  }
+
+  function restartChallenge() {
+    targetNumber = Math.floor(Math.random() * 50) + 1;
+    attempts = 5;
+    document.getElementById('guessInput').value = '';
+    document.getElementById('message').textContent = '';
+    document.getElementById('result').style.display = 'none';
+  }
+
+  function goBackToRoom() {
+    window.location.href = "../room.html"; // 返回房间
+  }
+</script>
+</body>
+</html>

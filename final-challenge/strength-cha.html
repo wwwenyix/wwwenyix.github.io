@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Strength Final Challenge</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .game-container {
+            display: block;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .click-button {
+            padding: 20px;
+            font-size: 18px;
+            background-color: #fa5515;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .click-button:hover {
+            background-color: #e94e00;
+        }
+
+        #timer {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+
+        #result-message {
+            font-size: 20px;
+            margin-top: 20px;
+        }
+
+        .restart-button, .return-button {
+            padding: 10px 20px;
+            background-color: #fcc003;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .restart-button:hover, .return-button:hover {
+            background-color: #e68900;
+        }
+
+    </style>
+</head>
+<body>
+<div class="game-container">
+    <h1>Strength Challenge</h1>
+    <p>Click the button as many times as you can in 5 seconds!</p>
+
+    <button class="click-button" id="clickButton" onclick="increaseClickCount()">Click Me!</button>
+
+    <div id="timer">Time Remaining: 5s</div>
+    <div id="result-message"></div>
+
+    <button class="restart-button" id="restartButton" onclick="restartGame()" style="display:none;">Restart</button>
+    <button class="return-button" onclick="location.href = '../scene5-room.html';">Return to Room</button>
+</div>
+
+<script>
+    let clickCount = 0;
+    let timer = 5;
+    let timerInterval;
+    let isGameOver = false;
+
+    function startGame() {
+        isGameOver = false;
+        clickCount = 0;
+        timer = 5;
+        document.getElementById('timer').textContent = `Time Remaining: ${timer}s`;
+        document.getElementById('result-message').textContent = '';
+        document.getElementById('clickButton').disabled = false;
+        document.getElementById('restartButton').style.display = 'none';
+
+        timerInterval = setInterval(() => {
+            if (timer > 0) {
+                timer--;
+                document.getElementById('timer').textContent = `Time Remaining: ${timer}s`;
+            } else {
+                clearInterval(timerInterval);
+                endGame();
+            }
+        }, 1000);
+    }
+
+    function increaseClickCount() {
+        if (!isGameOver) {
+            clickCount++;
+        }
+    }
+
+    function endGame() {
+        isGameOver = true;
+        document.getElementById('clickButton').disabled = true;
+
+        const targetClicks = 30; // 设置目标点击次数
+        const resultMessage = document.getElementById('result-message');
+
+        if (clickCount >= targetClicks) {
+            resultMessage.textContent = `Well done! You clicked ${clickCount} times and completed the challenge!`;
+            setTimeout(() => {
+                window.location.href = "../final.html";
+            }, 4000);
+        } else {
+            resultMessage.textContent = `You clicked ${clickCount} times. Try again!`;
+            document.getElementById('restartButton').style.display = 'inline-block';
+        }
+    }
+
+    function restartGame() {
+        startGame();
+    }
+
+    window.onload = startGame;
+</script>
+</body>
+</html>

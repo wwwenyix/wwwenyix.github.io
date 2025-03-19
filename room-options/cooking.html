@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mark's Birthday Adventure - Cooking Challenge</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .cooking-container {
+            text-align: center;
+            margin-top: 5px;
+        }
+
+        .ingredients {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        .ingredient {
+            margin: 10px;
+            font-size: 18px;
+        }
+
+        .ingredient input {
+            margin-left: 10px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center; /* 水平居中 */
+        }
+
+        .answer-container {
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .answer-container input {
+            padding: 5px;
+            font-size: 16px;
+            margin-left: 10px;
+        }
+
+        .result-message {
+            font-size: 20px;
+            margin-top: 20px;
+        }
+
+        .cooking-image {
+            display: none;
+            margin-top: 20px;
+        }
+
+        #result-message {
+            margin-top: 20px;
+            font-size: 20px;
+        }
+
+        .answer-button {
+            width: 200px;
+            padding: 15px;
+            font-size: 16px;
+            background-color: #fa5515;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        .answer-button:hover {
+            background-color: #e94e00;
+        }
+    </style>
+</head>
+<body>
+<div class="screen">
+    <div id="status-bar">
+        <p>Wisdom: <span id="wisdom"></span></p>
+        <p>Strength: <span id="strength"></span></p>
+    </div>
+
+    <div class="story-text">
+        <p>Mark steps into the corner, where the scattered remnants of ingredients and utensils are lying around.</p>
+        <p>He senses the challenge ahead. To succeed, Mark must choose the right ingredients and unlock the secret dish.</p>
+    </div>
+
+    <div class="cooking-container">
+        <h2>What ingredients does Mark need?</h2>
+
+        <div class="ingredients">
+            <div class="ingredient">
+                <input type="checkbox" id="tomato" /> Tomato 🍅
+            </div>
+            <div class="ingredient">
+                <input type="checkbox" id="potato" /> Potato 🥔
+            </div>
+            <div class="ingredient">
+                <input type="checkbox" id="beans" /> Beans 🫛
+            </div>
+            <div class="ingredient">
+                <input type="checkbox" id="broccoli" /> Broccoli 🥦
+            </div>
+            <div class="ingredient">
+                <input type="checkbox" id="lasagna" /> Lasagna Sheets 🫓
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="answer-container">
+                <h2>What dish should Mark cook?</h2>
+                <input type="text" id="dish-answer" placeholder="Enter your answer..." />
+            </div>
+        </div>
+
+        <button class="answer-button" onclick="submitCookingChallenge()">Submit</button>
+        <div class="container">
+            <div id="result-message" class="result-message"></div>
+            <img id="cooking-image" src="../assets/lasagna.jpg" alt="Lasagna" class="cooking-image" style="display: none;">
+        </div>
+
+        <button onclick="location.href='../scene5-room.html'">Go back to the room</button>
+    </div>
+</div>
+
+<script src="../script.js" defer></script>
+<script>
+    function submitCookingChallenge() {
+        // 检查选择的食材
+        let correctIngredients = 0;
+        if (document.getElementById('tomato').checked) correctIngredients++;
+        if (document.getElementById('lasagna').checked) correctIngredients++;
+
+        // 获取用户输入的菜名
+        const dishAnswer = document.getElementById('dish-answer').value.trim().toLowerCase();
+
+        // 判断是否都正确
+        const resultMessage = document.getElementById('result-message');
+        const cookingImage = document.getElementById('cooking-image');
+
+        if (correctIngredients === 2 && dishAnswer === "lasagna") {
+            increaseStrength(2);
+            resultMessage.innerHTML = "Well done! You’ve cooked a delicious lasagna! <br> You've gained 2 strength point.";
+            cookingImage.style.display = "inline-block";
+        } else {
+            resultMessage.textContent = "Oops! That's not the right recipe or ingredients. Try again!";
+            cookingImage.style.display = "none";
+        }
+
+    }
+</script>
+</body>
+</html>
